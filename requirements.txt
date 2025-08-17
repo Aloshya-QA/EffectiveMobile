@@ -2,3 +2,5 @@ pytest
 pytest-playwright
 allure-pytest
 playwright
+loguru
+pytest_check
