@@ -21,19 +21,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install allure-pytest
+          pip install playwright
+          playwright install
 
-      - name: Run tests
-        run: |
-          pytest --alluredir=allure-results
+      - name: Run tests with Allure results
+        run: pytest --alluredir=allure-results
 
-      - name: Install Allure CLI
+      - name: Download Allure CLI
         run: |
-          sudo apt-add-repository ppa:qameta/allure
-          sudo apt-get update
-          sudo apt-get install allure
+          wget https://github.com/allure-framework/allure2/releases/download/2.27.2/allure-2.27.2.zip
+          unzip allure-2.27.2.zip -d $HOME/allure
+          export PATH=$HOME/allure/allure-2.27.2/bin:$PATH
+          allure --version
 
       - name: Generate Allure report
         run: |
+          export PATH=$HOME/allure/allure-2.27.2/bin:$PATH
           allure generate allure-results -o allure-report --clean
 
       - name: Deploy Allure report to gh-pages
