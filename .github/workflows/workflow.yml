@@ -29,14 +29,14 @@ jobs:
 
       - name: Download Allure CLI
         run: |
-          wget https://github.com/allure-framework/allure2/releases/download/2.27.2/allure-2.27.2.zip
-          unzip allure-2.27.2.zip -d $HOME/allure
-          export PATH=$HOME/allure/allure-2.27.2/bin:$PATH
+          wget https://github.com/allure-framework/allure2/releases/download/2.16.0/allure-2.16.0.zip
+          unzip allure-2.16.0.zip -d $HOME/allure
+          export PATH=$HOME/allure/allure-2.16.0/bin:$PATH
           allure --version
 
       - name: Generate Allure report
         run: |
-          export PATH=$HOME/allure/allure-2.27.2/bin:$PATH
+          export PATH=$HOME/allure/allure-2.16.0/bin:$PATH
           allure generate allure-results -o allure-report --clean
 
       - name: Deploy Allure report to gh-pages
