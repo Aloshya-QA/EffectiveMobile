@@ -17,7 +17,10 @@ jobs:
         run: docker build -t effective-mobile-tests .
 
       - name: Run tests inside Docker
-        run: docker run --rm -v ${{ github.workspace }}/allure-results:/app/allure-results effective-mobile-tests pytest --alluredir=allure-results
+        run: docker run --rm \
+          -v ${{ github.workspace }}/allure-results:/app/allure-results \
+          effective-mobile-tests \
+          pytest --alluredir=/app/allure-results
 
       - name: Generate Allure report inside Docker
         run: docker run --rm \
@@ -25,6 +28,12 @@ jobs:
           -v ${{ github.workspace }}/allure-report:/app/allure-report \
           effective-mobile-tests \
           allure generate /app/allure-results -o /app/allure-report --clean
+
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
 
       - name: Deploy Allure report to gh-pages
         uses: peaceiris/actions-gh-pages@v4
