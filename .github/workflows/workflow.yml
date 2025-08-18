@@ -8,37 +8,31 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+
     steps:
+      # 1. Checkout кода
       - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13'
+      # 2. Build Docker image
+      - name: Build Docker image
+        run: docker build -t effective-mobile-tests .
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install allure-pytest
-          pip install playwright
-          playwright install
+      # 3. Run tests in Docker container
+      - name: Run tests
+        run: docker run --rm \
+              -v ${{ github.workspace }}/allure-results:/app/allure-results \
+              effective-mobile-tests \
+              pytest --alluredir=allure-results
 
-      - name: Run tests with Allure results
-        run: pytest --alluredir=allure-results
-
-      - name: Download Allure CLI
-        run: |
-          wget https://github.com/allure-framework/allure2/releases/download/2.16.0/allure-2.16.0.zip
-          unzip allure-2.16.0.zip -d $HOME/allure
-          export PATH=$HOME/allure/allure-2.16.0/bin:$PATH
-          allure --version
-
+      # 4. Generate Allure report
       - name: Generate Allure report
-        run: |
-          export PATH=$HOME/allure/allure-2.16.0/bin:$PATH
-          allure generate allure-results -o allure-report --clean
+        run: docker run --rm \
+              -v ${{ github.workspace }}/allure-results:/app/allure-results \
+              -v ${{ github.workspace }}/allure-report:/app/allure-report \
+              effective-mobile-tests \
+              allure generate allure-results -o allure-report --clean
 
+      # 5. Deploy Allure report to GitHub Pages
       - name: Deploy Allure report to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
