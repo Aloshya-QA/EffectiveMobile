@@ -30,3 +30,17 @@ def page(browser):
 @pytest.fixture
 def landing_page(page):
     return LandingPage(page)
+
+import pytest
+import allure
+
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+    if report.when == "call" and report.failed:
+        if "page" in item.fixturenames:
+            page = item.funcargs["landing_page"].page
+            screenshot = page.screenshot()
+            allure.attach(screenshot, name="screenshot", attachment_type=allure.attachment_type.PNG)
+

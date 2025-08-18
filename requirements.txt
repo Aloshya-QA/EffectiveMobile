@@ -1,6 +1,6 @@
-pytest
-pytest-playwright
-allure-pytest
-playwright
-loguru
-pytest_check
+playwright==1.54.0
+pytest==8.4.1
+pytest_check==2.5.3
+pytest-playwright==0.7.0
+allure-pytest==2.15.0
+loguru==0.7.3
