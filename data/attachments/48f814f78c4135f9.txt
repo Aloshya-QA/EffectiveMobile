@@ -1,4 +1,0 @@
-2025-08-18 08:18:29.424 | INFO     | pages.landing_page:open:21 - Opening Landing page...
-2025-08-18 08:18:29.445 | INFO     | pages.landing_page:is_opened:28 - LandingPage is opened
-2025-08-18 08:18:29.490 | INFO     | pages.landing_page:click_button:39 - Click 'reviews' button
-2025-08-18 08:18:29.493 | INFO     | pages.landing_page:button_is_clicked:48 - 'reviews' button is clicked
