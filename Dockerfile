@@ -37,4 +37,4 @@ RUN LATEST=$(curl -s https://api.github.com/repos/allure-framework/allure2/relea
 
 RUN allure --version
 
-CMD ["pytest", "--alluredir=allure-results"]
+CMD ["pytest", "--allure=allure-results"]
