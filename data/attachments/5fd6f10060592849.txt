@@ -1,0 +1,4 @@
+2025-08-18 08:18:28.121 | INFO     | pages.landing_page:open:21 - Opening Landing page...
+2025-08-18 08:18:28.145 | INFO     | pages.landing_page:is_opened:28 - LandingPage is opened
+2025-08-18 08:18:28.191 | INFO     | pages.landing_page:click_button:39 - Click 'cases' button
+2025-08-18 08:18:28.194 | INFO     | pages.landing_page:button_is_clicked:48 - 'cases' button is clicked
