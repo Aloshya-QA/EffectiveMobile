@@ -19,8 +19,7 @@ jobs:
       - name: Run tests inside Docker
         run: docker run --rm \
           -v ${{ github.workspace }}/allure-results:/app/allure-results \
-          effective-mobile-tests \
-          pytest
+          effective-mobile-tests pytest
 
       - name: Generate Allure report inside Docker
         run: docker run --rm \
