@@ -1,4 +1,5 @@
 import allure
+import pytest
 import pytest_check as check
 
 class TestLandingPage:
