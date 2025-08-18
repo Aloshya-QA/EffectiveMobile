@@ -13,7 +13,9 @@ def landing_page_opened(landing_page):
 
 @allure.title("Checking click buttons")
 @pytest.mark.parametrize("button", BUTTONS)
-def test_landing_buttons(self, button):
+def test_landing_buttons(landing_page_opened, button):
     landing_page_opened.click_button(button)
-    check.is_true(landing_page_opened.button_is_clicked(button),
-                  f"Button '{button}' click failed")
+    check.is_true(
+        landing_page_opened.button_is_clicked(button),
+        f"Button '{button}' click failed"
+    )
