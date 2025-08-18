@@ -1,0 +1,12 @@
+2025-08-18 07:39:12.098 | INFO     | pages.landing_page:open:21 - Opening Landing page...
+2025-08-18 07:39:12.127 | INFO     | pages.landing_page:is_opened:28 - LandingPage is opened
+2025-08-18 07:39:12.177 | INFO     | pages.landing_page:click_button:39 - Click 'about_us' button
+2025-08-18 07:39:12.184 | INFO     | pages.landing_page:button_is_clicked:48 - 'about_us' button is clicked
+2025-08-18 07:39:12.221 | INFO     | pages.landing_page:click_button:39 - Click 'more_info' button
+2025-08-18 07:39:12.224 | INFO     | pages.landing_page:button_is_clicked:48 - 'more_info' button is clicked
+2025-08-18 07:39:12.256 | INFO     | pages.landing_page:click_button:39 - Click 'cases' button
+2025-08-18 07:39:12.259 | INFO     | pages.landing_page:button_is_clicked:48 - 'cases' button is clicked
+2025-08-18 07:39:12.288 | INFO     | pages.landing_page:click_button:39 - Click 'reviews' button
+2025-08-18 07:39:12.291 | INFO     | pages.landing_page:button_is_clicked:48 - 'reviews' button is clicked
+2025-08-18 07:39:12.320 | INFO     | pages.landing_page:click_button:39 - Click 'contacts' button
+2025-08-18 07:39:12.323 | INFO     | pages.landing_page:button_is_clicked:48 - 'contacts' button is clicked
