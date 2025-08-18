@@ -10,29 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout кода
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # 2. Build Docker image
       - name: Build Docker image
         run: docker build -t effective-mobile-tests .
 
-      # 3. Run tests in Docker container
-      - name: Run tests
-        run: docker run --rm \
-              -v ${{ github.workspace }}/allure-results:/app/allure-results \
-              effective-mobile-tests \
-              pytest --alluredir=allure-results
+      - name: Run tests inside Docker
+        run: docker run --rm -v ${{ github.workspace }}/allure-results:/app/allure-results effective-mobile-tests pytest --alluredir=allure-results
 
-      # 4. Generate Allure report
+      - name: Download Allure CLI
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.29.0.zip -O allure.zip
+          unzip allure.zip -d /tmp/allure
+          sudo mv /tmp/allure/allure-*/bin/allure /usr/local/bin/allure
+          allure --version
+
       - name: Generate Allure report
-        run: docker run --rm \
-              -v ${{ github.workspace }}/allure-results:/app/allure-results \
-              -v ${{ github.workspace }}/allure-report:/app/allure-report \
-              effective-mobile-tests \
-              allure generate allure-results -o allure-report --clean
+        run: allure generate allure-results -o allure-report --clean
 
-      # 5. Deploy Allure report to GitHub Pages
       - name: Deploy Allure report to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
