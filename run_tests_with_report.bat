@@ -1,18 +1,18 @@
 @echo off
-REM Сборка Docker-образа
+REM Build Docker image
 docker build -t effective-mobile-tests .
 
-REM Очистка старых результатов
+REM Clearing old results
 rmdir /s /q allure-results
 rmdir /s /q allure-report
 mkdir allure-results
 mkdir allure-report
 
-REM Запуск тестов внутри контейнера
+REM Running tests
 docker run --rm -v %cd%\allure-results:/app/allure-results effective-mobile-tests
 
-REM Генерация Allure отчета внутри контейнера
+REM Generating a report
 docker run --rm -v %cd%\allure-results:/app/allure-results -v %cd%\allure-report:/app/allure-report effective-mobile-tests allure generate /app/allure-results -o /app/allure-report --clean
 
-REM Открыть отчет
+REM Open report
 allure open allure-report
