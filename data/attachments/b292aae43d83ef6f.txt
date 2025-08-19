@@ -1,0 +1,4 @@
+2025-08-19 11:31:08.938 | INFO     | pages.landing_page:open:21 - Opening Landing page...
+2025-08-19 11:31:08.961 | INFO     | pages.landing_page:is_opened:28 - LandingPage is opened
+2025-08-19 11:31:09.005 | INFO     | pages.landing_page:click_button:39 - Click 'contacts' button
+2025-08-19 11:31:09.008 | INFO     | pages.landing_page:button_is_clicked:48 - 'contacts' button is clicked
